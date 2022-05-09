@@ -47,7 +47,9 @@ postRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
 
     Post.create( body ).then( async postDB => {
 
-        await postDB.populate('usuario', '-password').execPopulate();
+        await postDB.populate('usuario', '-password');
+        //TODO ver porque no dejo usar el execPopulate
+        //await postDB.populate('usuario', '-password').execPopulate();
 
         res.json({
             ok: true,

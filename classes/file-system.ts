@@ -24,7 +24,7 @@ export default class FileSystem {
                 if ( err ) {
                     reject(err);
                 } else {
-                    resolve();
+                    resolve("ok");
                 }
     
             });

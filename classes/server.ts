@@ -1,4 +1,3 @@
-
 import express from 'express';
 
 
@@ -11,7 +10,7 @@ export default class Server {
         this.app = express();
     }
 
-    start( callback: Function ) {
+    start( callback: any ) {
         this.app.listen(  this.port, callback );
     }
 

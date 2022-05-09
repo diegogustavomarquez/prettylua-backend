@@ -7,12 +7,13 @@ import { verificaToken } from '../middlewares/autenticacion';
 const userRoutes = Router();
 
 
+
 // Login
 userRoutes.post('/login', (req: Request, res: Response ) => {
 
     const body = req.body;
 
-    Usuario.findOne({ email: body.email }, ( err, userDB ) => {
+    Usuario.findOne({ email: body.email }, ( err: any, userDB: any ) => {
 
         if ( err ) throw err;
 
@@ -84,11 +85,7 @@ userRoutes.post('/create', ( req: Request, res: Response ) => {
         });
     });
 
-
-
-
 });
-
 
 // Actualizar usuario
 userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
@@ -126,8 +123,6 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
     });
 
 });
-
-
 
 userRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 

@@ -25,13 +25,21 @@ server.app.use('/posts', postRoutes );
 
 
 // Conectar DB
-mongoose.connect('mongodb://localhost:27017/fotosgram', 
-                { useNewUrlParser: true, useCreateIndex: true }, ( err ) => {
-
+mongoose.connect('mongodb://mongodev:secret@localhost:27017/prettyluadb?authSource=admin', ( err ) => {
    if ( err ) throw err;
-
    console.log('Base de datos ONLINE');
-})
+});
+
+// mongoose.connect('mongodb://localhost:27017', {
+//     dbName: 'prettyluadb',
+//     auth: {
+//       password: 'secret',
+//       username: 'mongodev',
+//     },
+//   }, ( err ) => {
+//    if ( err ) throw err;
+//    console.log('Base de datos ONLINE');
+// });
 
 // Levantar express
 server.start( () => {

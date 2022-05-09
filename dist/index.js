@@ -14,16 +14,26 @@ const server = new server_1.default();
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
 // FileUpload
-server.app.use(express_fileupload_1.default({ useTempFiles: true }));
+server.app.use((0, express_fileupload_1.default)({ useTempFiles: true }));
 // Rutas de mi app
 server.app.use('/user', usuario_1.default);
 server.app.use('/posts', post_1.default);
 // Conectar DB
-mongoose_1.default.connect('mongodb://localhost:27017/fotosgram', { useNewUrlParser: true, useCreateIndex: true }, (err) => {
+mongoose_1.default.connect('mongodb://mongodev:secret@localhost:27017/prettyluadb?authSource=admin', (err) => {
     if (err)
         throw err;
     console.log('Base de datos ONLINE');
 });
+// mongoose.connect('mongodb://localhost:27017', {
+//     dbName: 'prettyluadb',
+//     auth: {
+//       password: 'secret',
+//       username: 'mongodev',
+//     },
+//   }, ( err ) => {
+//    if ( err ) throw err;
+//    console.log('Base de datos ONLINE');
+// });
 // Levantar express
 server.start(() => {
     console.log(`Servidor corriendo en puerto ${server.port}`);
