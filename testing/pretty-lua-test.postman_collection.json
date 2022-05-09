@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "ad56a32d-6342-4756-8e53-3d860de6ec23",
+		"name": "pretty-lua-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"marquez\",\n    \"email\":\"diegomarquez86@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/user/create"
+			},
+			"response": []
+		},
+		{
+			"name": "Loguear usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();",
+							"    pm.collectionVariables.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": ""
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"diegomarquez86@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener datos usuario",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Il9pZCI6IjYyNzg2Mzk0MDlmNTc4MTMzZDJlOTJmOSIsIm5vbWJyZSI6IkRpZWdvMiIsImVtYWlsIjoiZGllZ28xQGdtYWlsLmNvbSIsImF2YXRhciI6ImF2LTEucG5nIn0sImlhdCI6MTY1MjA1OTk4OSwiZXhwIjoxNjU0NjUxOTg5fQ.YR3JFKFeiYYvy4IaI5G86QdaApywzuHbEYjaEk8Aadc",
+						"type": "default"
+					}
+				],
+				"url": "localhost:3000/user/"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Diego Gustavo\",\n    \"email\":\"diegomarquez86@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/user/update"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
