@@ -3,6 +3,7 @@
 Para instalar localmente: 
 
 npm install 
+
 npm install -g nodemon 
 
 docker pull mongo:5.0.8 
