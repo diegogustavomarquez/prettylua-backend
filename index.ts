@@ -6,6 +6,7 @@ import fileUpload from 'express-fileupload';
 
 import userRoutes from './routes/usuario';
 import postRoutes from './routes/post';
+import emailRoutes from './routes/email';
 
 const server = new Server();
 
@@ -22,6 +23,7 @@ server.app.use( fileUpload({ useTempFiles: true }) );
 // Rutas de mi app
 server.app.use('/user', userRoutes );
 server.app.use('/posts', postRoutes );
+server.app.use('/email', emailRoutes );
 
 
 // Conectar DB
