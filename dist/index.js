@@ -9,7 +9,19 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const usuario_1 = __importDefault(require("./routes/usuario"));
 const post_1 = __importDefault(require("./routes/post"));
+const email_1 = __importDefault(require("./routes/email"));
+const cors_1 = __importDefault(require("cors"));
 const server = new server_1.default();
+/*
+server.app.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', '*');
+   res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-COntrol-Allow-Request-Method');
+   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+   res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+   next();
+})*/
+//habilitar cors
+server.app.use((0, cors_1.default)({ origin: true, credentials: true }));
 // Body parser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
@@ -18,6 +30,7 @@ server.app.use((0, express_fileupload_1.default)({ useTempFiles: true }));
 // Rutas de mi app
 server.app.use('/user', usuario_1.default);
 server.app.use('/posts', post_1.default);
+server.app.use('/email', email_1.default);
 // Conectar DB
 mongoose_1.default.connect('mongodb://mongodev:secret@localhost:27017/prettyluadb?authSource=admin', (err) => {
     if (err)

@@ -8,7 +8,21 @@ import userRoutes from './routes/usuario';
 import postRoutes from './routes/post';
 import emailRoutes from './routes/email';
 
+import cors from 'cors';
+
 const server = new Server();
+
+ /*
+server.app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-COntrol-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+})*/
+
+//habilitar cors
+server.app.use( cors({origin:true, credentials:true}));
 
 
 // Body parser
@@ -19,7 +33,7 @@ server.app.use( bodyParser.json() );
 // FileUpload
 server.app.use( fileUpload({ useTempFiles: true }) );
 
-
+  
 // Rutas de mi app
 server.app.use('/user', userRoutes );
 server.app.use('/posts', postRoutes );
