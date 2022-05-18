@@ -8,6 +8,14 @@ const usuarioSchema = new Schema({
         type: String,
         required: [ true, 'El nombre es necesario' ]
     },
+    apellido: {
+        type: String,
+        required: [ true, 'El Apellido es necesario' ]
+    },
+    telefono: {
+        type: Number,
+        required: [ true, 'El telefono es necesario' ]
+    },
     avatar: {
         type: String,
         default: 'av-1.png'
@@ -20,7 +28,21 @@ const usuarioSchema = new Schema({
     password: {
         type: String,
         required: [ true, 'La contraseña es necesaria']
+    },
+    roles: [{
+        type: String,
+       // required: [ true, 'La contraseña es necesaria']
+    }],
+    perfil: {
+        type: String,
+        
     }
+//   perfil: {
+//        type: Schema.Types.ObjectId,
+ //       ref: 'Perfil',
+ //       required: [ true, 'Debe de existir una referencia a un perfil' ]
+  //  }
+  
 
 });
 
@@ -36,9 +58,13 @@ usuarioSchema.method('compararPassword', function( password: string = ''): boole
 
 interface IUsuario extends Document {
     nombre: string;
-    email: string;
+    apellido :string;
+    telefono : number;
+    email : string;
     password: string;
     avatar: string;
+    roles : string[];
+    perfil : string;
 
     compararPassword(password: string): boolean;
 }
