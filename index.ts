@@ -9,8 +9,14 @@ import postRoutes from './routes/post';
 import emailRoutes from './routes/email';
 
 import cors from 'cors';
+require('dotenv').config();
+
+const port = process.env.PORT || 3000;
+const urlDataBase = process.env.DATABASE || 'mongodb://mongodev:secret@localhost:27017/prettyluadb?authSource=admin';
 
 const server = new Server();
+
+console.log('urlDataBase' + urlDataBase);
 
  /*
 server.app.use((req, res, next) => {
@@ -41,9 +47,15 @@ server.app.use('/email', emailRoutes );
 
 
 // Conectar DB
-mongoose.connect('mongodb://mongodev:secret@localhost:27017/prettyluadb?authSource=admin', ( err ) => {
+/* mongoose.connect('mongodb://mongodev:secret@localhost:27017/prettyluadb?authSource=admin', ( err ) => {
    if ( err ) throw err;
    console.log('Base de datos ONLINE');
+}); */
+
+mongoose.default.connect(urlDataBase, (err) => {
+    if (err)
+        throw err;
+    console.log('Base de datos ONLINE');
 });
 
 // mongoose.connect('mongodb://localhost:27017', {
@@ -57,7 +69,10 @@ mongoose.connect('mongodb://mongodev:secret@localhost:27017/prettyluadb?authSour
 //    console.log('Base de datos ONLINE');
 // });
 
-// Levantar express
-server.start( () => {
-    console.log(`Servidor corriendo en puerto ${ server.port }`);
+server.app.listen(port, () => {
+    console.log(`Escuchando peticiones en el puerto ${ port }`);
 });
+// Levantar express
+// server.start( () => {
+//     console.log(`Servidor corriendo en puerto ${ server.port }`);
+// });
