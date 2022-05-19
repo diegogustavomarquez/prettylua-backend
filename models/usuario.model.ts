@@ -30,20 +30,13 @@ const usuarioSchema = new Schema({
         required: [ true, 'La contraseña es necesaria']
     },
     roles: [{
-        type: String,
-       // required: [ true, 'La contraseña es necesaria']
+        type: String
     }],
     perfil: {
-        type: String,
-        
+       type: Schema.Types.ObjectId,
+      // ref: 'Perfil',
+       required: [ true, 'Debe de existir una referencia a un perfil' ]
     }
-//   perfil: {
-//        type: Schema.Types.ObjectId,
- //       ref: 'Perfil',
- //       required: [ true, 'Debe de existir una referencia a un perfil' ]
-  //  }
-  
-
 });
 
 usuarioSchema.method('compararPassword', function( password: string = ''): boolean {

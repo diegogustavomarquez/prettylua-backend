@@ -6,7 +6,9 @@ import { verificaToken } from '../middlewares/autenticacion';
 
 const mascotaRoutes = Router();
 
-// Crear un usuario
+/**
+* Create pet
+**/
 mascotaRoutes.post('/create', ( req: Request, res: Response ) => {
 
     const mascota = {
@@ -64,7 +66,6 @@ fechaNacimiento  : req.body.fechaNacimiento    || req.mascota.fechaNacimiento,
         foto     : req.body.foto   || req.mascota.foto,
         estado   : req.body.estado || req.mascota.estado,
         codigo   : req.body.codigo || req.mascota.codigo
-
 
     }
 

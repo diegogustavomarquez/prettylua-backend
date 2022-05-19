@@ -8,6 +8,8 @@ import userRoutes from './routes/usuario';
 import postRoutes from './routes/post';
 import emailRoutes from './routes/email';
 import mascotaRoutes from './routes/mascota';
+import rolesRoutes from './routes/rol';
+import profilesRoutes from './routes/profile';
 import cors from 'cors';
 
 const server = new Server();
@@ -39,6 +41,8 @@ server.app.use('/user', userRoutes );
 server.app.use('/posts', postRoutes );
 server.app.use('/email', emailRoutes );
 server.app.use('/mascota', mascotaRoutes );
+server.app.use('/roles', rolesRoutes );
+server.app.use('/profiles', profilesRoutes );
 
 
 // Conectar DB

@@ -146,6 +146,7 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
 
 });
 
+
 userRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
     const usuario = req.usuario;

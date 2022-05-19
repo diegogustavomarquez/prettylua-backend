@@ -9,17 +9,17 @@ const mascotaSchema = new Schema({
     },
     especie: {
         type: String,
-        required: [ true, 'La especie es necesario' ]
+        required: [ true, 'La especie es necesaria' ]
     },
     raza: {
         type: String,
-        required: [ true, 'La raza es necesario' ]
+        required: [ true, 'La raza es necesaria' ]
     },
    
     fechaNacimiento: {
         type: Date,
        
-        required: [ true, 'La fecha de nacimiento es necesario' ]
+        required: [ true, 'La fecha de nacimiento es necesaria' ]
     },
     foto: [{
         type: String,
