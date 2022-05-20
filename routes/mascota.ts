@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { Mascota } from '../models/mascota.model';
-
+import bcrypt from 'bcrypt';
 import Token from '../classes/token';
 import { verificaToken } from '../middlewares/autenticacion';
 
@@ -9,13 +9,14 @@ const mascotaRoutes = Router();
 /**
 * Create pet
 **/
-mascotaRoutes.post('/create', ( req: Request, res: Response ) => {
+mascotaRoutes.post('/create',( req: Request, res: Response ) => {
 
     const mascota = {
         nombre   : req.body.nombre,
-        especie  : req.body.especie,
+        sexo     : req.body.sexo,
         raza     : req.body.raza,
-        fechaNacimiento     : req.body.fechaNacimiento,
+        anio     : req.body.anio,
+        mes      : req.body.mes,
         foto     : req.body.foto,
         estado   : req.body.estado,
         codigo   : req.body.codigo // va?
@@ -24,28 +25,24 @@ mascotaRoutes.post('/create', ( req: Request, res: Response ) => {
     };
 //cuerpo cuando se resuelva la promesa
     Mascota.create( mascota ).then( mascotaDB => {
-
+ 
        // const tokenUser = Token.getJwtToken({
           const mascota = {
             _id             : mascotaDB._id,
             nombre          : mascotaDB.nombre,
-            especie         : mascotaDB.especie,
+            sexo            : mascotaDB.sexo,
             raza            : mascotaDB.raza,
-            fechaNacimiento : mascotaDB.fechaNacimiento,
+            anio            : mascotaDB.anio,
+            mes             : mascotaDB.mes,
             foto            : mascotaDB.foto,
             estado          : mascotaDB.estado,
             codigo          : mascotaDB.codigo
           }
-            
        // });
-
         res.json({
             ok: true,
-            mascota :mascotaDB
-      // token: tokenUser
+            token: mascota
         });
-
-
     }).catch( err => {
         res.json({
             ok: false,
@@ -60,9 +57,10 @@ mascotaRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
 
     const mascota = {
         nombre   : req.body.nombre  || req.mascota.nombre,
-        especie  : req.body.especie || req.mascota.especie,
+        sexo     : req.body.especie || req.mascota.sexo,
         raza     : req.body.raza    || req.mascota.raza,
-fechaNacimiento  : req.body.fechaNacimiento    || req.mascota.fechaNacimiento,
+        anio     : req.body.anio    || req.mascota.anio,
+        mes      : req.body.mes    || req.mascota.mes,
         foto     : req.body.foto   || req.mascota.foto,
         estado   : req.body.estado || req.mascota.estado,
         codigo   : req.body.codigo || req.mascota.codigo
@@ -83,9 +81,10 @@ fechaNacimiento  : req.body.fechaNacimiento    || req.mascota.fechaNacimiento,
         const mascota = {
             _id             : mascotaDB._id,
             nombre          : mascotaDB.nombre,
-            especie         : mascotaDB.especie,
+            sexo            : mascotaDB.sexo,
             raza            : mascotaDB.raza,
-            fechaNacimiento : mascotaDB.fechaNacimiento,
+            anio            : mascotaDB.anio,
+            mes             : mascotaDB.mes,
             foto            : mascotaDB.foto,
             estado          : mascotaDB.estado,
             codigo          : mascotaDB.codigo    
@@ -93,8 +92,8 @@ fechaNacimiento  : req.body.fechaNacimiento    || req.mascota.fechaNacimiento,
         }
         res.json({
             ok: true,
-            //token: tokenUser
-            mascota : mascotaDB
+            token: mascota
+           // mascota : mascotaDB
         });
 
 

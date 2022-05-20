@@ -7,19 +7,26 @@ const mascotaSchema = new Schema({
         type: String,
         required: [ true, 'El nombre es necesario' ]
     },
-    especie: {
-        type: String,
-        required: [ true, 'La especie es necesaria' ]
-    },
-    raza: {
+    raza: [{
         type: String,
         required: [ true, 'La raza es necesaria' ]
-    },
-   
-    fechaNacimiento: {
-        type: Date,
+    }],
+    sexo: {
+        type: String,
+    },      
+    anio: {
+        type: Number,
+   },
+   mes: {
+    type: Number,
+   },
+    castrado: {
+        type: String,
        
-        required: [ true, 'La fecha de nacimiento es necesaria' ]
+    },
+    Veterinario: {
+        type: String,
+       
     },
     foto: [{
         type: String,
@@ -29,6 +36,7 @@ const mascotaSchema = new Schema({
         type: String,
        
     },
+
 
     codigo: {
         type: Schema.Types.ObjectId,
@@ -43,9 +51,10 @@ const mascotaSchema = new Schema({
 
 interface IMascota extends Document {
     nombre: string;
-    especie : string;
+    sexo : string;
     raza : string;
-    fechaNacimiento: Date;
+    anio: Number;
+    mes : Number;
     foto: string[];
     estado: String;
     codigo : String;
