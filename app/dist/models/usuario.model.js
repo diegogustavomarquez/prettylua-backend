@@ -32,12 +32,9 @@ const usuarioSchema = new mongoose_1.Schema({
         type: String,
         required: [true, 'La contraseña es necesaria']
     },
-    roles: [{
-            type: String
-        }],
     perfil: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        // ref: 'Perfil',
+        type: String,
+        //        ref: 'profile',
         required: [true, 'Debe de existir una referencia a un perfil']
     }
 });

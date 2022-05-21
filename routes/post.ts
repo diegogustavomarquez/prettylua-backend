@@ -5,7 +5,6 @@ import { FileUpload } from '../interfaces/file-upload';
 import FileSystem from '../classes/file-system';
 
 
-
 const postRoutes = Router();
 const fileSystem = new FileSystem();
 
@@ -22,15 +21,11 @@ postRoutes.get('/', async (req: any, res: Response) => {
                             .limit(10)
                             .populate('usuario', '-password')
                             .exec();
-
-
     res.json({
         ok: true,
         pagina,
         posts
     });
-
-
 });
 
 
@@ -99,8 +94,6 @@ postRoutes.post( '/upload', [ verificaToken ], async (req: any, res: Response) =
 
 });
 
-
-
 postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
 
     const userId = req.params.userid;
@@ -111,8 +104,5 @@ postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
     res.sendFile( pathFoto );
 
 });
-
-
-
 
 export default postRoutes;
