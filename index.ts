@@ -6,7 +6,9 @@ import fileUpload from 'express-fileupload';
 import userRoutes from './routes/usuario';
 import postRoutes from './routes/post';
 import emailRoutes from './routes/email';
-
+import mascotaRoutes from './routes/mascota';
+import rolesRoutes from './routes/rol';
+import profilesRoutes from './routes/profile';
 import cors from 'cors';
 
 const express = require('express');
@@ -32,9 +34,13 @@ app.use( bodyParser.json() );
 app.use( fileUpload({ useTempFiles: true }) );
 
 // Rutas de mi app
+
 app.use('/user', userRoutes );
 app.use('/posts', postRoutes );
 app.use('/email', emailRoutes );
+app.use('/mascota', mascotaRoutes );
+app.use('/roles', rolesRoutes );
+app.use('/profiles', profilesRoutes );
 
 mongoose.default.connect(urlDataBase, (err) => {
     if (err)
@@ -42,6 +48,7 @@ mongoose.default.connect(urlDataBase, (err) => {
     console.log('Base de datos ONLINE');
 });
 
+// Levantar express
 app.listen(port, () => {
     console.log(`Escuchando peticiones en el puerto ${ port }`);
 });
