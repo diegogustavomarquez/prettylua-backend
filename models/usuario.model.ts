@@ -1,6 +1,7 @@
 
 import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
+import { Profile } from './profile.model';
 
 const usuarioSchema = new Schema({
 
@@ -29,12 +30,9 @@ const usuarioSchema = new Schema({
         type: String,
         required: [ true, 'La contraseña es necesaria']
     },
-    roles: [{
-        type: String
-    }],
     perfil: {
-       type: Schema.Types.ObjectId,
-      // ref: 'Perfil',
+       type: String,
+//        ref: 'profile',
        required: [ true, 'Debe de existir una referencia a un perfil' ]
     }
 });
@@ -56,7 +54,6 @@ interface IUsuario extends Document {
     email : string;
     password: string;
     avatar: string;
-    roles : string[];
     perfil : string;
 
     compararPassword(password: string): boolean;

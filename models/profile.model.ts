@@ -8,10 +8,10 @@ const profileSchema = new Schema({
         type: String,
         required: [ true, 'El nombre es necesario' ]
     },
-    descripcion: {
+    roles: [{
         type: String,
-        required: [ true, 'La descripcion es necesaria' ]
-    }
+        required: [ true, 'Debe selecionar un rol' ]
+    }]
 
 });
 
@@ -19,7 +19,6 @@ interface IProfile extends Document {
     nombre: string;
     descripcion :string;
     roles : string[];
-
 }
 
 export const Profile = model<IProfile>('Profile', profileSchema);

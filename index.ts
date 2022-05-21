@@ -8,7 +8,7 @@ import postRoutes from './routes/post';
 import emailRoutes from './routes/email';
 import mascotaRoutes from './routes/mascota';
 import rolesRoutes from './routes/rol';
-import profilesRoutes from './routes/profile';
+import profileRoutes from './routes/profile';
 import cors from 'cors';
 
 const express = require('express');
@@ -40,7 +40,7 @@ app.use('/posts', postRoutes );
 app.use('/email', emailRoutes );
 app.use('/mascota', mascotaRoutes );
 app.use('/roles', rolesRoutes );
-app.use('/profiles', profilesRoutes );
+app.use('/profiles', profileRoutes );
 
 mongoose.default.connect(urlDataBase, (err) => {
     if (err)
