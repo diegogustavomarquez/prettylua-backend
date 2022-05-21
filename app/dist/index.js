@@ -9,6 +9,9 @@ const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const usuario_1 = __importDefault(require("./routes/usuario"));
 const post_1 = __importDefault(require("./routes/post"));
 const email_1 = __importDefault(require("./routes/email"));
+const mascota_1 = __importDefault(require("./routes/mascota"));
+const rol_1 = __importDefault(require("./routes/rol"));
+const profile_1 = __importDefault(require("./routes/profile"));
 const cors_1 = __importDefault(require("cors"));
 const express = require('express');
 const app = express();
@@ -28,11 +31,15 @@ app.use((0, express_fileupload_1.default)({ useTempFiles: true }));
 app.use('/user', usuario_1.default);
 app.use('/posts', post_1.default);
 app.use('/email', email_1.default);
+app.use('/mascota', mascota_1.default);
+app.use('/roles', rol_1.default);
+app.use('/profiles', profile_1.default);
 mongoose_1.default.default.connect(urlDataBase, (err) => {
     if (err)
         throw err;
     console.log('Base de datos ONLINE');
 });
+// Levantar express
 app.listen(port, () => {
     console.log(`Escuchando peticiones en el puerto ${port}`);
 });

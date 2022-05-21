@@ -14,4 +14,4 @@ docker run -p 27017:27017 --name mongodbdev -e MONGO_INITDB_ROOT_USERNAME=mongod
 
 tsc -w 
 
-nodemon dist
+nodemon app/dist

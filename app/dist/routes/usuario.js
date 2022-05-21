@@ -25,8 +25,12 @@ userRoutes.post('/login', (req, res) => {
             const tokenUser = token_1.default.getJwtToken({
                 _id: userDB._id,
                 nombre: userDB.nombre,
+                apellido: userDB.apellido,
                 email: userDB.email,
-                avatar: userDB.avatar
+                telefono: userDB.telefono,
+                avatar: userDB.avatar,
+                roles: userDB.roles,
+                perfil: userDB.perfil
             });
             res.json({
                 ok: true,
@@ -45,7 +49,11 @@ userRoutes.post('/login', (req, res) => {
 userRoutes.post('/create', (req, res) => {
     const user = {
         nombre: req.body.nombre,
+        apellido: req.body.apellido,
         email: req.body.email,
+        telefono: req.body.telefono,
+        roles: req.body.roles,
+        perfil: req.body.perfil,
         password: bcrypt_1.default.hashSync(req.body.password, 10),
         avatar: req.body.avatar
     };
@@ -53,8 +61,12 @@ userRoutes.post('/create', (req, res) => {
         const tokenUser = token_1.default.getJwtToken({
             _id: userDB._id,
             nombre: userDB.nombre,
+            apellido: userDB.apellido,
             email: userDB.email,
-            avatar: userDB.avatar
+            telefono: userDB.telefono,
+            avatar: userDB.avatar,
+            roles: userDB.roles,
+            perfil: userDB.perfil
         });
         res.json({
             ok: true,
@@ -71,8 +83,12 @@ userRoutes.post('/create', (req, res) => {
 userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
     const user = {
         nombre: req.body.nombre || req.usuario.nombre,
+        apellido: req.body.apellido || req.usuario.apellido,
+        telefono: req.body.telefono || req.usuario.telefono,
         email: req.body.email || req.usuario.email,
-        avatar: req.body.avatar || req.usuario.avatar
+        avatar: req.body.avatar || req.usuario.avatar,
+        roles: req.body.roles || req.usuario.roles,
+        perfil: req.body.perfil || req.usuario.perfil
     };
     usuario_model_1.Usuario.findByIdAndUpdate(req.usuario._id, user, { new: true }, (err, userDB) => {
         if (err)
@@ -85,9 +101,12 @@ userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
         }
         const tokenUser = token_1.default.getJwtToken({
             _id: userDB._id,
-            nombre: userDB.nombre,
+            apellido: userDB.apellido,
             email: userDB.email,
-            avatar: userDB.avatar
+            telefono: userDB.telefono,
+            avatar: userDB.avatar,
+            roles: userDB.roles,
+            perfil: userDB.perfil
         });
         res.json({
             ok: true,
