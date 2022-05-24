@@ -15,7 +15,6 @@ rolesRoutes.get('/rolesByProfile', [ verificaToken ], ( req: Request, res: Respo
     Rol.find({ perfil: profileDesc }, ( err: any, rolDB: any ) => {
         res.json({
             ok: true,
-            token: tokenUser,
             rolDB
         });
     }).catch( err => {
