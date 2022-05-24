@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt';
 import Token from '../classes/token';
 import { verificaToken } from '../middlewares/autenticacion';
 
-
 const rolesRoutes = Router();
 
 /**
@@ -16,9 +15,15 @@ rolesRoutes.get('/rolesByProfile', [ verificaToken ], ( req: Request, res: Respo
     Rol.find({ perfil: profileDesc }, ( err: any, rolDB: any ) => {
         res.json({
             ok: true,
+            token: tokenUser,
             rolDB
         });
-    })
+    }).catch( err => {
+         res.status(500).json({
+             ok: false,
+             err
+         });
+     });
 
 });
 
@@ -39,12 +44,14 @@ rolesRoutes.post('/createRol',  [ verificaToken ],( req: Request, res: Response 
             nombre: rolDB.nombre,
             perfil: rolDB.perfil
         };
-        res.json({
+        res.status(201).json({
             ok: true,
-            token: newRol
+            message: "Se ha creado el rol.",
+            token: tokenUser,
+            rol: newRol
         });
     }).catch( err => {
-        res.json({
+        res.status(500).json({
             ok: false,
             err
         });

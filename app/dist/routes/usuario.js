@@ -16,7 +16,7 @@ userRoutes.post('/login', (req, res) => {
         if (err)
             throw err;
         if (!userDB) {
-            return res.json({
+            return res.status(401).json({
                 ok: false,
                 mensaje: 'Usuario/contraseña no son correctos'
             });
@@ -29,7 +29,6 @@ userRoutes.post('/login', (req, res) => {
                 email: userDB.email,
                 telefono: userDB.telefono,
                 avatar: userDB.avatar,
-                roles: userDB.roles,
                 perfil: userDB.perfil
             });
             res.json({
@@ -38,9 +37,9 @@ userRoutes.post('/login', (req, res) => {
             });
         }
         else {
-            return res.json({
+            return res.status(401).json({
                 ok: false,
-                mensaje: 'Usuario/contraseña no son correctos ***'
+                mensaje: 'Usuario/contraseña no son correctos ***',
             });
         }
     });
@@ -52,7 +51,6 @@ userRoutes.post('/create', (req, res) => {
         apellido: req.body.apellido,
         email: req.body.email,
         telefono: req.body.telefono,
-        roles: req.body.roles,
         perfil: req.body.perfil,
         password: bcrypt_1.default.hashSync(req.body.password, 10),
         avatar: req.body.avatar
@@ -65,15 +63,16 @@ userRoutes.post('/create', (req, res) => {
             email: userDB.email,
             telefono: userDB.telefono,
             avatar: userDB.avatar,
-            roles: userDB.roles,
             perfil: userDB.perfil
         });
-        res.json({
+        res.status(201).json({
             ok: true,
-            token: tokenUser
+            message: "Usuario creado.",
+            token: tokenUser,
+            user: userDB
         });
     }).catch(err => {
-        res.json({
+        res.status(500).json({
             ok: false,
             err
         });
@@ -85,40 +84,64 @@ userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
         nombre: req.body.nombre || req.usuario.nombre,
         apellido: req.body.apellido || req.usuario.apellido,
         telefono: req.body.telefono || req.usuario.telefono,
+        password: bcrypt_1.default.hashSync(req.body.password, 10) || bcrypt_1.default.hashSync(req.usuario.password, 10),
         email: req.body.email || req.usuario.email,
         avatar: req.body.avatar || req.usuario.avatar,
-        roles: req.body.roles || req.usuario.roles,
         perfil: req.body.perfil || req.usuario.perfil
     };
     usuario_model_1.Usuario.findByIdAndUpdate(req.usuario._id, user, { new: true }, (err, userDB) => {
-        if (err)
-            throw err;
         if (!userDB) {
-            return res.json({
+            return res.status(404).json({
                 ok: false,
                 mensaje: 'No existe un usuario con ese ID'
             });
         }
         const tokenUser = token_1.default.getJwtToken({
             _id: userDB._id,
+            nombre: userDB.nombre,
             apellido: userDB.apellido,
+            password: userDB.password,
             email: userDB.email,
             telefono: userDB.telefono,
             avatar: userDB.avatar,
-            roles: userDB.roles,
             perfil: userDB.perfil
         });
-        res.json({
-            ok: true,
-            token: tokenUser
-        });
+        if (err) {
+            res.status(500);
+            throw err;
+        }
+        else {
+            res.json({
+                ok: true,
+                message: "Usuario Actualizado.",
+                token: tokenUser,
+                user: userDB
+            });
+        }
     });
 });
 userRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
     const usuario = req.usuario;
-    res.json({
-        ok: true,
-        usuario
+    usuario_model_1.Usuario.find((err, userDB) => {
+        const user = {
+            _id: userDB._id,
+            nombre: userDB.nombre,
+            apellido: userDB.apellido,
+            email: userDB.email,
+            telefono: userDB.telefono,
+            avatar: userDB.avatar,
+            perfil: userDB.perfil
+        };
+        if (err) {
+            res.status(500);
+            throw err;
+        }
+        else {
+            res.json({
+                ok: true,
+                user: userDB
+            });
+        }
     });
 });
 exports.default = userRoutes;

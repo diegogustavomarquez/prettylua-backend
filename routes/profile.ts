@@ -9,12 +9,23 @@ const profileRoutes = Router();
 
 profileRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
-    const usuario = req.usuario;
-
-    res.json({
-        ok: true,
-        usuario
-    });
+    //const profile = req.perfil;
+    Profile.find(( err: any, profileDB: any ) => {
+        const profile = {
+            _id      : profileDB._id,
+            nombre   : profileDB.nombre,
+            roles    : profileDB.roles
+        }
+        if ( err ) {
+            res.status(500);
+            throw err;
+        } else {
+            res.json({
+                ok: true,
+                profile: profileDB
+            });
+        }
+    })
 
 });
 

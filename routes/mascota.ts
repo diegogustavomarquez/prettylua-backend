@@ -3,7 +3,12 @@ import { Mascota } from '../models/mascota.model';
 import bcrypt from 'bcrypt';
 import Token from '../classes/token';
 import { verificaToken } from '../middlewares/autenticacion';
-
+import {
+	ReasonPhrases,
+	StatusCodes,
+	getReasonPhrase,
+	getStatusCode,
+} from 'http-status-codes';
 const mascotaRoutes = Router();
 
 /**
@@ -39,12 +44,12 @@ mascotaRoutes.post('/create',( req: Request, res: Response ) => {
             codigo          : mascotaDB.codigo
           }
        // });
-        res.json({
+        res.status(201).json({
             ok: true,
             token: mascota
         });
     }).catch( err => {
-        res.json({
+        res.status(500).json({
             ok: false,
             err
         });
@@ -72,7 +77,7 @@ mascotaRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
         if ( err ) throw err;
         mascotaRoutes
         if ( !mascotaDB ) {
-            return res.json({
+            return res.status(404).json({
                 ok: false,
                 mensaje: 'No existe la mascota con ese ID'
             });
@@ -92,11 +97,10 @@ mascotaRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
         }
         res.json({
             ok: true,
-            token: mascota
+            token: mascota,
            // mascota : mascotaDB
+            message:"Mascota actualizada."
         });
-
-
     });
 
 });
