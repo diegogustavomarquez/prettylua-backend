@@ -47,6 +47,10 @@ rolesRoutes.post('/createRol',  [ verificaToken ],( req: Request, res: Response 
         res.status(201).json({
             ok: true,
             message: "Se ha creado el rol.",
+<<<<<<< HEAD
+=======
+            token: tokenUser,
+>>>>>>> ad2331e53e9b9e41e358e20f216715577900f425
             rol: newRol
         });
     }).catch( err => {
