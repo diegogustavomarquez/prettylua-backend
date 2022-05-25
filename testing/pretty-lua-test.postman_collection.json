@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ad56a32d-6342-4756-8e53-3d860de6ec23",
+		"_postman_id": "02f96c8a-9cb1-49c5-8488-4c6c1a5d5a8a",
 		"name": "pretty-lua-test",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5807322"
 	},
 	"item": [
 		{
@@ -12,14 +13,24 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"marquez\",\n    \"email\":\"diegomarquez86@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"raw": "{\n    \"nombre\": \"Ani\",\n    \"email\":\"anabella23@gmail.com\",\n    \"apellido\":\"Apellido\",\n    \"telefono\": \"654987\",\n    \"avatar\": \"av-1.png\",\n    \"password\": \"123456789\",\n    \"perfil\": \"Empresa\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "localhost:3000/user/create"
+				"url": {
+					"raw": "localhost:3000/user/create",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"create"
+					]
+				}
 			},
 			"response": []
 		},
@@ -30,8 +41,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"    var jsonData = pm.response.json();",
-							"    pm.collectionVariables.set(\"token\", jsonData.token);"
+							"var jsonData = pm.response.json();",
+							"pm.globals.set(\"token\",jsonData.token);"
 						],
 						"type": "text/javascript"
 					}
@@ -40,22 +51,42 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": ""
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"diegomarquez86@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"raw": "{\n    \"email\":\"anabella23@gmail.com\",\n    \"password\": \"123456789\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "localhost:3000/user/login"
+				"url": {
+					"raw": "localhost:3000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
 			},
 			"response": []
 		},
@@ -70,7 +101,17 @@
 						"type": "default"
 					}
 				],
-				"url": "localhost:3000/user/"
+				"url": {
+					"raw": "localhost:3000/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -94,7 +135,293 @@
 						}
 					}
 				},
-				"url": "localhost:3000/user/update"
+				"url": {
+					"raw": "localhost:3000/user/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rol",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Adiestrador\",\r\n    \"perfil\":\"Empresa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/roles/createRol",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"roles",
+						"createRol"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profiles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/profiles",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profiles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get rol by profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Adiestrador\",\n    \"perfil\":\"Empresa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/roles/rolesByProfile?profile=aaaaa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"roles",
+						"rolesByProfile"
+					],
+					"query": [
+						{
+							"key": "profile",
+							"value": "aaaaa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"    pm.globals.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Anita Perro\",\r\n    \"gender\":\"F\",\r\n    \"kind\":\"Perro caniche\",\r\n    \"breed\":\"Perro\",\r\n    \"color\": \"Blanco\",\r\n    \"year\": \"2022\",\r\n    \"month\": \"05\",\r\n    \"pics\": \"123456789\",\r\n    \"castrated\": 0,\r\n    \"isAlive\": 1,\r\n    \"status\": 1,\r\n    \"vets\": [] ,\r\n    \"userId\": \"628958951aa61be02e920fd3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/pet/createPet/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						"createPet",
+						""
+					],
+					"query": [
+						{
+							"key": "x-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Il9pZCI6IjYyODk1YWY0MTY1NjI4ZTA0MmE2ZGVhMSIsIm5vbWJyZSI6IkFuaSIsImFwZWxsaWRvIjoiQXBlbGxpZG8iLCJlbWFpbCI6ImFuYWJlbGxhMjNAZ21haWwuY29tIiwidGVsZWZvbm8iOjY1NDk4NywiYXZhdGFyIjoiYXYtMS5wbmciLCJwZXJmaWwiOiJFbXByZXNhIn0sImlhdCI6MTY1MzQzOTcwNSwiZXhwIjoxNjU2MDMxNzA1fQ.IBe-40pS9EM3VN6p5kEk9oXz3xh16rRhUuq2sC2BMsc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"    pm.globals.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"628d926169c90198fdb403c\",\r\n    \"name\": \"Anita persa Actualizado\",\r\n    \"gender\":\"F\",\r\n    \"kind\":\"Gato persa\",\r\n    \"breed\":\"Perro\",\r\n    \"color\": \"Blanco y negro\",\r\n    \"year\": \"2022\",\r\n    \"month\": \"05\",\r\n    \"pics\": \"123456789\",\r\n    \"castrated\": 0,\r\n    \"isAlive\": 1,\r\n    \"status\": 1,\r\n    \"vets\": [] ,\r\n    \"userId\": \"628958951aa61be02e920fd3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/pet/updatePet/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						"updatePet",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pet by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"    pm.globals.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/pet/byId?petId=628d982de39e31344542eb3d",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						"byId"
+					],
+					"query": [
+						{
+							"key": "petId",
+							"value": "628d982de39e31344542eb3d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pet by user Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"    pm.globals.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/pet/byUserId?userId=628958951aa61be02e920fde",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						"byUserId"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "628958951aa61be02e920fde"
+						}
+					]
+				}
 			},
 			"response": []
 		}

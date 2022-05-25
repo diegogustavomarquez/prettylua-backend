@@ -31,7 +31,7 @@ app.use((0, express_fileupload_1.default)({ useTempFiles: true }));
 app.use('/user', usuario_1.default);
 app.use('/posts', post_1.default);
 app.use('/email', email_1.default);
-app.use('/mascota', mascota_1.default);
+app.use('/pet', mascota_1.default);
 app.use('/roles', rol_1.default);
 app.use('/profiles', profile_1.default);
 mongoose_1.default.default.connect(urlDataBase, (err) => {

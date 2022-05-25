@@ -6,7 +6,7 @@ import fileUpload from 'express-fileupload';
 import userRoutes from './routes/usuario';
 import postRoutes from './routes/post';
 import emailRoutes from './routes/email';
-import mascotaRoutes from './routes/mascota';
+import petRoutes from './routes/mascota';
 import rolesRoutes from './routes/rol';
 import profileRoutes from './routes/profile';
 import cors from 'cors';
@@ -38,7 +38,7 @@ app.use( fileUpload({ useTempFiles: true }) );
 app.use('/user', userRoutes );
 app.use('/posts', postRoutes );
 app.use('/email', emailRoutes );
-app.use('/mascota', mascotaRoutes );
+app.use('/pet', petRoutes );
 app.use('/roles', rolesRoutes );
 app.use('/profiles', profileRoutes );
 
