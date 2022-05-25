@@ -1,65 +1,76 @@
 import { Schema, model, Document } from 'mongoose';
 
 
-const mascotaSchema = new Schema({
+const petSchema = new Schema({
 
-    nombre: {
+    name: {
         type: String,
         required: [ true, 'El nombre es necesario' ]
     },
-    raza: [{
+    breed: {//raza
         type: String,
         required: [ true, 'La raza es necesaria' ]
-    }],
-    sexo: {
+    },
+    kind: {//tipo de animal
+        type: String,
+        required: [ true, 'Debe especificar el tipo de mascota' ]
+    },
+    color: {
+        type: String,
+        required: [ true, 'Debe especificar el color de la mascota' ]
+    },
+    gender: {//genero
         type: String,
     },      
-    anio: {
+    year: {
         type: Number,
-   },
-   mes: {
-    type: Number,
-   },
-    castrado: {
+    },
+    mes: {
+        type: Number,
+    },
+    castrated: {
+        type: Boolean,
+
+    },
+    vets: [{
         type: String,
        
-    },
-    Veterinario: {
-        type: String,
-       
-    },
-    foto: [{
+    }],
+    pics: [{
         type: String,
      
     }],
-    estado: {
-        type: String,
-       
+    isAlive: {//si vive
+       type: Boolean,
+       required: [ true, 'Debe especificar si vive' ]
     },
+    status: {//si fue dado de baja
+       type: Boolean
 
-
-    codigo: {
-        type: Schema.Types.ObjectId,
-        ref: 'Usuario',
+    },
+    userId: {
+        type: String,
+       // ref: 'Usuario',
         required: [ true, 'Debe de existir una referencia a un usuario' ]
     }
   
-  
 });
 
+interface IPet extends Document {
+    name: string;
+    gender : string;
+    breed : string;
+    kind : string;
+    color : string;
+    year: Number;
+    month : Number;
+    pics: string[];
+    vets: string[];
+    isAlive: Boolean;
+    castrated: Boolean;
+    status: Boolean;
+    userId : String;
 
-
-interface IMascota extends Document {
-    nombre: string;
-    sexo : string;
-    raza : string;
-    anio: Number;
-    mes : Number;
-    foto: string[];
-    estado: String;
-    codigo : String;
-
-  
 }
 
-export const Mascota = model<IMascota>('Mascota', mascotaSchema);
+export const Pet = model<IPet>('Pet', petSchema);
