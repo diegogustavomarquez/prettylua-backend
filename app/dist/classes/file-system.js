@@ -31,7 +31,7 @@ class FileSystem {
         // 6.copy.jpg
         const nombreArr = nombreOriginal.split('.');
         const extension = nombreArr[nombreArr.length - 1];
-        const idUnico = (0, uniqid_1.default)();
+        const idUnico = uniqid_1.default();
         return `${idUnico}.${extension}`;
     }
     crearCarpetaUsuario(userId) {
