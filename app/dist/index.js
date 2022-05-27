@@ -21,12 +21,12 @@ const urlDataBase = process.env.DATABASE || 'mongodb://mongodev:secret@localhost
 console.log('port: ' + port);
 console.log('urlDataBase: ' + urlDataBase);
 //habilitar cors
-app.use(cors_1.default({ origin: true, credentials: true }));
+app.use((0, cors_1.default)({ origin: true, credentials: true }));
 // Body parser
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
 // FileUpload
-app.use(express_fileupload_1.default({ useTempFiles: true }));
+app.use((0, express_fileupload_1.default)({ useTempFiles: true }));
 // Rutas de mi app
 app.use('/user', usuario_1.default);
 app.use('/posts', post_1.default);

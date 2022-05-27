@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const emailRoutes = express_1.Router();
+const emailRoutes = (0, express_1.Router)();
 var nodemailer = require('nodemailer');
 emailRoutes.post('/send', (req, res) => {
     const transporter = nodemailer.createTransport({

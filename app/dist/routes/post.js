@@ -16,7 +16,7 @@ const express_1 = require("express");
 const autenticacion_1 = require("../middlewares/autenticacion");
 const post_model_1 = require("../models/post.model");
 const file_system_1 = __importDefault(require("../classes/file-system"));
-const postRoutes = express_1.Router();
+const postRoutes = (0, express_1.Router)();
 const fileSystem = new file_system_1.default();
 // Obtener POST paginados
 postRoutes.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
