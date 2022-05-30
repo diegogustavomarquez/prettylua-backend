@@ -191,6 +191,7 @@ petRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
 * @param userId
 **/
 petRoutes.get('/byUserId', [ verificaToken ], ( req: any, res: Response ) => {
+
     const userIdParam = req.query.userId;
 
     Pet.find( {userId: userIdParam}, ( err: any, petDB: any) => {
@@ -213,7 +214,7 @@ petRoutes.get('/byUserId', [ verificaToken ], ( req: any, res: Response ) => {
 
         }
 
-        if ( !petDB || !petDB._id) {
+        if ( !petDB) {
             return res.status(404).json({
                 ok: false,
                 message: 'No existe la mascota para el usuario'

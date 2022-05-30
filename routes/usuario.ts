@@ -33,7 +33,8 @@ userRoutes.post('/login', (req: Request, res: Response ) => {
             });
             res.json({
                 ok: true,
-                token: tokenUser
+                token: tokenUser,
+                data :userDB
             });
 
         } else {
