@@ -121,6 +121,30 @@ userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
         }
     });
 });
+userRoutes.get('/userById', [autenticacion_1.verificaToken], (req, res) => {
+    const usuario = req.usuario;
+    usuario_model_1.Usuario.find({ _id: req.usuario._id }, usuario, (err, userDB) => {
+        const user = {
+            _id: userDB._id,
+            nombre: userDB.nombre,
+            apellido: userDB.apellido,
+            email: userDB.email,
+            telefono: userDB.telefono,
+            avatar: userDB.avatar,
+            perfil: userDB.perfil
+        };
+        if (err) {
+            res.status(500);
+            throw err;
+        }
+        else {
+            res.json({
+                ok: true,
+                user: userDB
+            });
+        }
+    });
+});
 userRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
     const usuario = req.usuario;
     usuario_model_1.Usuario.find((err, userDB) => {
