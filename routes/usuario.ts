@@ -134,6 +134,29 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
 
 });
 
+userRoutes.get('/userById', [ verificaToken ], ( req: any, res: Response ) => {
+    const usuario = req.usuario;
+    Usuario.find({_id:req.usuario._id},usuario,  ( err: any, userDB: any ) => {
+        const user = {
+            _id: userDB._id,
+            nombre   : userDB.nombre,
+            apellido : userDB.apellido,
+            email    : userDB.email,
+            telefono : userDB.telefono,
+            avatar   : userDB.avatar,
+            perfil   : userDB.perfil
+        }
+        if ( err ) {
+            res.status(500);
+            throw err;
+        } else {
+            res.json({
+                ok: true,
+                user: userDB
+            });
+        }
+    })
+});
 
 userRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
