@@ -80,12 +80,12 @@ userRoutes.post('/create', (req, res) => {
     });
 });
 // Actualizar usuario
-userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
+userRoutes.put('/update', autenticacion_1.verificaToken, (req, res) => {
     const user = {
         nombre: req.body.nombre || req.usuario.nombre,
         apellido: req.body.apellido || req.usuario.apellido,
         telefono: req.body.telefono || req.usuario.telefono,
-        password: bcrypt_1.default.hashSync(req.body.password, 10) || bcrypt_1.default.hashSync(req.usuario.password, 10),
+        //password : bcrypt.hashSync(req.body.password, 10) || bcrypt.hashSync(req.usuario.password,10),
         email: req.body.email || req.usuario.email,
         avatar: req.body.avatar || req.usuario.avatar,
         perfil: req.body.perfil || req.usuario.perfil
@@ -121,8 +121,31 @@ userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
         }
     });
 });
-userRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
+userRoutes.get('/userById', [autenticacion_1.verificaToken], (req, res) => {
     const usuario = req.usuario;
+    usuario_model_1.Usuario.find({ _id: req.usuario._id }, usuario, (err, userDB) => {
+        const user = {
+            _id: userDB._id,
+            nombre: userDB.nombre,
+            apellido: userDB.apellido,
+            email: userDB.email,
+            telefono: userDB.telefono,
+            avatar: userDB.avatar,
+            perfil: userDB.perfil
+        };
+        if (err) {
+            res.status(500);
+            throw err;
+        }
+        else {
+            res.json({
+                ok: true,
+                user: userDB
+            });
+        }
+    });
+});
+userRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
     usuario_model_1.Usuario.find((err, userDB) => {
         const user = {
             _id: userDB._id,

@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Ani\",\n    \"email\":\"anabella23@gmail.com\",\n    \"apellido\":\"Apellido\",\n    \"telefono\": \"654987\",\n    \"avatar\": \"av-1.png\",\n    \"password\": \"123456789\",\n    \"perfil\": \"Empresa\"\n}",
+					"raw": "{\n    \"nombre\": \"Ani\",\n    \"email\":\"anabella@gmail.com\",\n    \"apellido\":\"Apellido\",\n    \"telefono\": \"654987\",\n    \"avatar\": \"av-1.png\",\n    \"password\": \"123456789\",\n    \"perfil\": \"Empresa\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,11 +21,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user/create",
+					"raw": "https://prettylua-backend.herokuapp.com/user/create",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"prettylua-backend",
+						"herokuapp",
+						"com"
 					],
-					"port": "3000",
 					"path": [
 						"user",
 						"create"
@@ -69,7 +71,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"anabella23@gmail.com\",\n    \"password\": \"123456789\"\n}",
+					"raw": "{\n    \"email\":\"anabellahm1@gmail.com\",\n    \"password\": \"123456789\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,11 +79,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user/login",
+					"raw": "{{ENV}}/user/login",
 					"host": [
-						"localhost"
+						"{{ENV}}"
 					],
-					"port": "3000",
 					"path": [
 						"user",
 						"login"
@@ -128,7 +129,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Diego Gustavo\",\n    \"email\":\"diegomarquez86@gmail.com\"\n}",
+					"raw": "{\n    \"nombre\": \"Anita Actualizado heroku\",\n    \"email\":\"anabella23@gmail.com\",\n    \"apellido\":\"Apellido Modificado\",\n    \"telefono\": \"65498789\",\n    \"avatar\": \"av-1.png\",\n    \"password\": \"123456789\",\n    \"roles\":[],\n    \"perfil\": null\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -136,11 +137,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user/update",
+					"raw": "https://prettylua-backend.herokuapp.com/user/update",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"prettylua-backend",
+						"herokuapp",
+						"com"
 					],
-					"port": "3000",
 					"path": [
 						"user",
 						"update"
@@ -263,7 +266,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Anita Perro\",\r\n    \"gender\":\"F\",\r\n    \"kind\":\"Perro caniche\",\r\n    \"breed\":\"Perro\",\r\n    \"color\": \"Blanco\",\r\n    \"year\": \"2022\",\r\n    \"month\": \"05\",\r\n    \"pics\": \"123456789\",\r\n    \"castrated\": 0,\r\n    \"isAlive\": 1,\r\n    \"status\": 1,\r\n    \"vets\": [] ,\r\n    \"userId\": \"628958951aa61be02e920fd3\"\r\n}",
+					"raw": "{\"id\": \"6295067f4f953087d3625317\",\r\n    \"name\": \"Anita persa\",\r\n    \"gender\":\"Female\",\r\n    \"kind\":\"Gato\",\r\n    \"breed\":\"Perro\",\r\n    \"dateOfBirth\": \"2022-05-31T15:42:29+00:00\",\r\n    \"dateOfBirthDescription\": \"Aprox\",\r\n    \"pics\": \"123456789\",\r\n    \"notes\": \"insert notes here\",\r\n    \"vets\": [] ,\r\n    \"userId\": \"628958951aa61be02e920fd3\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -271,11 +274,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/pet/createPet/",
+					"raw": "{{ENV}}/pet/createPet/",
 					"host": [
-						"localhost"
+						"{{ENV}}"
 					],
-					"port": "3000",
 					"path": [
 						"pet",
 						"createPet",
@@ -317,7 +319,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"628d926169c90198fdb403c\",\r\n    \"name\": \"Anita persa Actualizado\",\r\n    \"gender\":\"F\",\r\n    \"kind\":\"Gato persa\",\r\n    \"breed\":\"Perro\",\r\n    \"color\": \"Blanco y negro\",\r\n    \"year\": \"2022\",\r\n    \"month\": \"05\",\r\n    \"pics\": \"123456789\",\r\n    \"castrated\": 0,\r\n    \"isAlive\": 1,\r\n    \"status\": 1,\r\n    \"vets\": [] ,\r\n    \"userId\": \"628958951aa61be02e920fd3\"\r\n}",
+					"raw": "{\r\n    \"id\": \"629699fd351c5e7558e644a0\",\r\n    \"name\": \"Anita persa\",\r\n    \"gender\":\"Female\",\r\n    \"kind\":\"Gato\",\r\n    \"breed\":\"Perro\",\r\n    \"dateOfBirth\": \"2022-05-31T15:42:29+00:00\",\r\n    \"dateOfBirthDescription\": \"Aprox\",\r\n    \"pics\": \"123456789\",\r\n    \"notes\": \"insert notes here\",\r\n    \"vets\": [] ,\r\n    \"userId\": \"628958951aa61be02e920fd3\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -325,11 +327,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/pet/updatePet/",
+					"raw": "{{ENV}}/pet/updatePet/",
 					"host": [
-						"localhost"
+						"{{ENV}}"
 					],
-					"port": "3000",
 					"path": [
 						"pet",
 						"updatePet",
@@ -363,11 +364,10 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:3000/pet/byId?petId=628d982de39e31344542eb3d",
+					"raw": "{{ENV}}/pet/byId?petId=628e5613b6864422fabf60b3",
 					"host": [
-						"localhost"
+						"{{ENV}}"
 					],
-					"port": "3000",
 					"path": [
 						"pet",
 						"byId"
@@ -375,7 +375,7 @@
 					"query": [
 						{
 							"key": "petId",
-							"value": "628d982de39e31344542eb3d"
+							"value": "628e5613b6864422fabf60b3"
 						}
 					]
 				}
@@ -419,6 +419,60 @@
 						{
 							"key": "userId",
 							"value": "628958951aa61be02e920fde"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET kind Of Pet",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ENV}}/pet/kindOf",
+					"host": [
+						"{{ENV}}"
+					],
+					"path": [
+						"pet",
+						"kindOf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePet by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ENV}}/pet/delete?petId=6296cd98acfce1a455e1f21a",
+					"host": [
+						"{{ENV}}"
+					],
+					"path": [
+						"pet",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "petId",
+							"value": "6296cd98acfce1a455e1f21a"
 						}
 					]
 				}

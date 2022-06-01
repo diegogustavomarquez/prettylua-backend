@@ -23,8 +23,8 @@ console.log('urlDataBase: ' + urlDataBase);
 //habilitar cors
 app.use((0, cors_1.default)({ origin: true, credentials: true }));
 // Body parser
-app.use(body_parser_1.default.urlencoded({ extended: true }));
-app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.json({ limit: '50mb' }));
+app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true }));
 // FileUpload
 app.use((0, express_fileupload_1.default)({ useTempFiles: true }));
 // Rutas de mi app

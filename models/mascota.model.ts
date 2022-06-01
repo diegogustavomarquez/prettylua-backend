@@ -4,56 +4,38 @@ import { Schema, model, Document } from 'mongoose';
 const petSchema = new Schema({
 
     name: {
-        type: String,
-        required: [ true, 'El nombre es necesario' ]
+        type: String
     },
     breed: {//raza
-        type: String,
-        required: [ true, 'La raza es necesaria' ]
+        type: String
     },
     kind: {//tipo de animal
-        type: String,
-        required: [ true, 'Debe especificar el tipo de mascota' ]
-    },
-    color: {
-        type: String,
-        required: [ true, 'Debe especificar el color de la mascota' ]
+        type: String
     },
     gender: {//genero
         type: String,
     },      
-    year: {
-        type: Number,
+    dateOfBirth: {
+        type: String
     },
-    mes: {
-        type: Number,
+    dateOfBirthDetail: {
+        type: String
     },
-    castrated: {
-        type: Boolean,
-
+    notes: {
+        type: String
     },
     vets: [{
-        type: String,
-       
+        type: String
     }],
     pics: [{
-        type: String,
-     
+        type: String
     }],
-    isAlive: {//si vive
-       type: Boolean,
-       required: [ true, 'Debe especificar si vive' ]
-    },
     status: {//si fue dado de baja
-       type: Boolean
-
+       type: String
     },
     userId: {
-        type: String,
-       // ref: 'Usuario',
-        required: [ true, 'Debe de existir una referencia a un usuario' ]
+        type: String
     }
-  
 });
 
 interface IPet extends Document {
@@ -61,13 +43,11 @@ interface IPet extends Document {
     gender : string;
     breed : string;
     kind : string;
-    color : string;
-    year: Number;
-    month : Number;
+    dateOfBirth: string;
+    dateOfBirthDetail : Number;
+    notes: String;
     pics: string[];
     vets: string[];
-    isAlive: Boolean;
-    castrated: Boolean;
     status: Boolean;
     userId : String;
 
