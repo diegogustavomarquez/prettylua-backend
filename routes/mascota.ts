@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { Pet } from '../models/mascota.model';
+import { Kind } from '../models/kind.model';
 import { Usuario } from '../models/usuario.model';
 import bcrypt from 'bcrypt';
 import Token from '../classes/token';
@@ -18,19 +19,17 @@ const petRoutes = Router();
 petRoutes.post('/createPet', verificaToken,( req: Request, res: Response ) => {
 
     const pet = {
-        name     : req.body.name,
-        gender   : req.body.gender,
-        breed    : req.body.breed,
-        kind     : req.body.kind,
-        color    : req.body.color,
-        year     : req.body.year,
-        month    : req.body.mes,
-        pics     : req.body.pics,
-        vets     : req.body.vets,
-        isAlive  : req.body.isAlive,
-        userId   : req.body.userId,
-        status   : req.body.status,
-     castrated   : req.body.castrated
+            id               : req.body._id,
+            name              : req.body.name,
+            gender            : req.body.gender,
+            kind              : req.body.kind,
+            breed             : req.body.breed,
+            dateOfBirth       : req.body.dateOfBirth,
+            dateOfBirthDetail : req.body.dateOfBirthDetail,
+            pics              : req.body.pics,
+            vets              : req.body.vets,
+            notes             : req.body.notes,
+            userId            : req.body.userId
     };
 
     const user =  req.body.userId;
@@ -53,20 +52,17 @@ petRoutes.post('/createPet', verificaToken,( req: Request, res: Response ) => {
         });
     Pet.create( pet ).then( petDB => {
           const pet = {
-            _id             : petDB._id,
-            name            : petDB.name,
-            gender          : petDB.gender,
-            kind            : petDB.kind,
-            breed           : petDB.breed,
-            color           : petDB.color,
-            year            : petDB.year,
-            month           : petDB.month,
-            pics            : petDB.pics,
-            vets            : petDB.vets,
-            isAlive         : petDB.isAlive,
-            castrated       : petDB.castrated,
-            status          : petDB.status,
-            userId          : petDB.userId
+            _id               : petDB._id,
+            name              : petDB.name,
+            gender            : petDB.gender,
+            kind              : petDB.kind,
+            breed             : petDB.breed,
+            dateOfBirth       : petDB.dateOfBirth,
+            dateOfBirthDetail : petDB.dateOfBirthDetail,
+            pics              : petDB.pics,
+            vets              : petDB.vets,
+            notes             : petDB.notes,
+            userId            : petDB.userId
           }
         res.status(201).json({
             ok: true,
@@ -93,20 +89,17 @@ petRoutes.post('/createPet', verificaToken,( req: Request, res: Response ) => {
 petRoutes.put('/updatePet', verificaToken, (req: any, res: Response ) => {
 
     const pet = {
-        id       : req.body.id,
-        name     : req.body.name,
-        gender   : req.body.gender,
-        breed    : req.body.breed,
-        kind     : req.body.kind,
-        color    : req.body.color,
-        year     : req.body.year,
-        month    : req.body.month,
-        pics     : req.body.pics,
-        vets     : req.body.vets,
-        isAlive  : req.body.isAlive,
-        status   : req.body.status,
-        userId   : req.body.userId,
-     castrated   : req.body.castrated
+            id               : req.body._id,
+            name              : req.body.name,
+            gender            : req.body.gender,
+            kind              : req.body.kind,
+            breed             : req.body.breed,
+            dateOfBirth       : req.body.dateOfBirth,
+            dateOfBirthDetail : req.body.dateOfBirthDetail,
+            pics              : req.body.pics,
+            vets              : req.body.vets,
+            notes             : req.body.notes,
+            userId            : req.body.userId
     };
 
     Pet.findByIdAndUpdate( pet.id, pet, { new: true }, (err, petDB) => {
@@ -119,21 +112,17 @@ petRoutes.put('/updatePet', verificaToken, (req: any, res: Response ) => {
         }
 
         const petResult = {
-            _id             : petDB._id,
-            name            : petDB.name,
-            gender          : petDB.gender,
-            kind            : petDB.kind,
-            breed           : petDB.breed,
-            color           : petDB.color,
-            year            : petDB.year,
-            month           : petDB.month,
-            pics            : petDB.pics,
-            vets            : petDB.vets,
-            isAlive         : petDB.isAlive,
-            castrated       : petDB.castrated,
-            status          : petDB.status,
-            userId          : petDB.userId
-        
+            _id               : petDB._id,
+            name              : petDB.name,
+            gender            : petDB.gender,
+            kind              : petDB.kind,
+            breed             : petDB.breed,
+            dateOfBirth       : petDB.dateOfBirth,
+            dateOfBirthDetail : petDB.dateOfBirthDetail,
+            pics              : petDB.pics,
+            vets              : petDB.vets,
+            notes             : petDB.notes,
+            userId            : petDB.userId
         }
         res.json({
             ok: true,
@@ -155,21 +144,17 @@ petRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
     Pet.findById( {_id: idParam}, ( err: any, petDB: any) => {
 
         const pet = {
-            _id             : petDB._id,
-            name            : petDB.name,
-            gender          : petDB.gender,
-            kind            : petDB.kind,
-            breed           : petDB.breed,
-            color           : petDB.color,
-            year            : petDB.year,
-            month           : petDB.month,
-            pics            : petDB.pics,
-            vets            : petDB.vets,
-            isAlive         : petDB.isAlive,
-            castrated       : petDB.castrated,
-            status          : petDB.status,
-            userId          : petDB.userId
-
+            _id               : petDB._id,
+            name              : petDB.name,
+            gender            : petDB.gender,
+            kind              : petDB.kind,
+            breed             : petDB.breed,
+            dateOfBirth       : petDB.dateOfBirth,
+            dateOfBirthDetail : petDB.dateOfBirthDetail,
+            pics              : petDB.pics,
+            vets              : petDB.vets,
+            notes             : petDB.notes,
+            userId            : petDB.userId
         }
 
         if ( !petDB ) {
@@ -197,21 +182,17 @@ petRoutes.get('/byUserId', [ verificaToken ], ( req: any, res: Response ) => {
     Pet.find( {userId: userIdParam}, ( err: any, petDB: any) => {
 
         const pet = {
-            _id             : petDB._id,
-            name            : petDB.name,
-            gender          : petDB.gender,
-            kind            : petDB.kind,
-            breed           : petDB.breed,
-            color           : petDB.color,
-            year            : petDB.year,
-            month           : petDB.month,
-            pics            : petDB.pics,
-            vets            : petDB.vets,
-            isAlive         : petDB.isAlive,
-            castrated       : petDB.castrated,
-            status          : petDB.status,
-            userId          : petDB.userId
-
+            _id               : petDB._id,
+            name              : petDB.name,
+            gender            : petDB.gender,
+            kind              : petDB.kind,
+            breed             : petDB.breed,
+            dateOfBirth       : petDB.dateOfBirth,
+            dateOfBirthDetail : petDB.dateOfBirthDetail,
+            pics              : petDB.pics,
+            vets              : petDB.vets,
+            notes             : petDB.notes,
+            userId            : petDB.userId
         }
 
         if ( !petDB) {
@@ -228,4 +209,46 @@ petRoutes.get('/byUserId', [ verificaToken ], ( req: any, res: Response ) => {
 
 });
 
+
+/**
+* Gets kind of pets list
+**/
+petRoutes.get('/kindOf', [ verificaToken ], ( req: any, res: Response ) => {
+
+    Kind.find( ( err: any, kindDB: any) => {
+
+        if ( !kindDB) {
+            return res.status(404).json({
+                ok: false,
+                message: 'No existen tipos de mascotas'
+            });
+        }
+        res.json({
+            ok: true,
+            data : kindDB
+        });
+    });
+
+});
+
+/**
+* Delete pets
+**/
+petRoutes.delete('/delete', [ verificaToken ], ( req: any, res: Response ) => {
+    const idParam = req.query.petId;
+    Pet.findByIdAndDelete({_id: idParam}, ( err: any, petDB: any) => {
+
+        if ( !petDB) {
+            return res.status(404).json({
+                ok: false,
+                message: 'No existen macota con ese id:'+idParam
+            });
+        }
+        res.json({
+            ok: true,
+            message : "Mascota eliminada"
+        });
+    });
+
+});
 export default petRoutes;
