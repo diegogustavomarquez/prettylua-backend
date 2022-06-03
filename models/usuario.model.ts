@@ -27,8 +27,7 @@ const usuarioSchema = new Schema({
         required: [ true, 'El correo es necesario' ]
     },
     password: {
-        type: String,
-        required: [ true, 'La contraseña es necesaria']
+        type: String
     },
     perfil: {
        type: String,

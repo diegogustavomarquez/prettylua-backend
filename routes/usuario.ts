@@ -88,12 +88,12 @@ userRoutes.post('/create', ( req: Request, res: Response ) => {
 });
 
 // Actualizar usuario
-userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
+userRoutes.put('/update', verificaToken, (req: any, res: Response ) => {
     const user = {
         nombre   : req.body.nombre                        || req.usuario.nombre,
         apellido : req.body.apellido                      || req.usuario.apellido,
         telefono : req.body.telefono                      || req.usuario.telefono,
-        password : bcrypt.hashSync(req.body.password, 10) || bcrypt.hashSync(req.usuario.password,10),
+        //password : bcrypt.hashSync(req.body.password, 10) || bcrypt.hashSync(req.usuario.password,10),
         email    : req.body.email                         || req.usuario.email,
         avatar   : req.body.avatar                        || req.usuario.avatar,
         perfil  : req.body.perfil                         || req.usuario.perfil
@@ -160,8 +160,7 @@ userRoutes.get('/userById', [ verificaToken ], ( req: any, res: Response ) => {
 
 userRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
-    const usuario = req.usuario;
-    Usuario.find(( err: any, userDB: any ) => {
+    Usuario.find( ( err: any, userDB: any ) => {
         const user = {
             _id: userDB._id,
             nombre   : userDB.nombre,

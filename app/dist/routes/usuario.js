@@ -80,12 +80,12 @@ userRoutes.post('/create', (req, res) => {
     });
 });
 // Actualizar usuario
-userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
+userRoutes.put('/update', autenticacion_1.verificaToken, (req, res) => {
     const user = {
         nombre: req.body.nombre || req.usuario.nombre,
         apellido: req.body.apellido || req.usuario.apellido,
         telefono: req.body.telefono || req.usuario.telefono,
-        password: bcrypt_1.default.hashSync(req.body.password, 10) || bcrypt_1.default.hashSync(req.usuario.password, 10),
+        //password : bcrypt.hashSync(req.body.password, 10) || bcrypt.hashSync(req.usuario.password,10),
         email: req.body.email || req.usuario.email,
         avatar: req.body.avatar || req.usuario.avatar,
         perfil: req.body.perfil || req.usuario.perfil
@@ -146,7 +146,6 @@ userRoutes.get('/userById', [autenticacion_1.verificaToken], (req, res) => {
     });
 });
 userRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
-    const usuario = req.usuario;
     usuario_model_1.Usuario.find((err, userDB) => {
         const user = {
             _id: userDB._id,
