@@ -136,7 +136,7 @@ userRoutes.put('/update', verificaToken, (req: any, res: Response ) => {
 
 userRoutes.get('/userById', [ verificaToken ], ( req: any, res: Response ) => {
     const usuario = req.usuario;
-    Usuario.find({_id:req.usuario._id},usuario,  ( err: any, userDB: any ) => {
+    Usuario.find({_id:req.usuario._id}, ( err: any, userDB: any ) => {
         const user = {
             _id: userDB._id,
             nombre   : userDB.nombre,

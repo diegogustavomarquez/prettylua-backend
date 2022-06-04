@@ -123,7 +123,7 @@ userRoutes.put('/update', autenticacion_1.verificaToken, (req, res) => {
 });
 userRoutes.get('/userById', [autenticacion_1.verificaToken], (req, res) => {
     const usuario = req.usuario;
-    usuario_model_1.Usuario.find({ _id: req.usuario._id }, usuario, (err, userDB) => {
+    usuario_model_1.Usuario.find({ _id: req.usuario._id }, (err, userDB) => {
         const user = {
             _id: userDB._id,
             nombre: userDB.nombre,
