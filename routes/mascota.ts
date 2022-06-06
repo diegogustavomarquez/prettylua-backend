@@ -47,7 +47,7 @@ petRoutes.post('/createPet', verificaToken,( req: Request, res: Response ) => {
             password : userDB.password,
             email    : userDB.email,
             telefono : userDB.telefono,
-            avatar   : userDB.avatar,
+            //avatar   : userDB.avatar,
             perfil   : userDB.perfil
         });
     Pet.create( pet ).then( petDB => {
