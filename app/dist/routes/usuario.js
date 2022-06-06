@@ -28,7 +28,7 @@ userRoutes.post('/login', (req, res) => {
                 apellido: userDB.apellido,
                 email: userDB.email,
                 telefono: userDB.telefono,
-                avatar: userDB.avatar,
+                //avatar   : userDB.avatar,
                 perfil: userDB.perfil
             });
             res.json({
@@ -63,7 +63,7 @@ userRoutes.post('/create', (req, res) => {
             apellido: userDB.apellido,
             email: userDB.email,
             telefono: userDB.telefono,
-            avatar: userDB.avatar,
+            //avatar   : userDB.avatar,
             perfil: userDB.perfil
         });
         res.status(201).json({
@@ -87,7 +87,7 @@ userRoutes.put('/update', autenticacion_1.verificaToken, (req, res) => {
         telefono: req.body.telefono || req.usuario.telefono,
         //password : bcrypt.hashSync(req.body.password, 10) || bcrypt.hashSync(req.usuario.password,10),
         email: req.body.email || req.usuario.email,
-        avatar: req.body.avatar || req.usuario.avatar,
+        avatar: req.body.avatar,
         perfil: req.body.perfil || req.usuario.perfil
     };
     usuario_model_1.Usuario.findByIdAndUpdate(req.usuario._id, user, { new: true }, (err, userDB) => {
@@ -104,7 +104,7 @@ userRoutes.put('/update', autenticacion_1.verificaToken, (req, res) => {
             password: userDB.password,
             email: userDB.email,
             telefono: userDB.telefono,
-            avatar: userDB.avatar,
+            //avatar   : userDB.avatar,
             perfil: userDB.perfil
         });
         if (err) {
