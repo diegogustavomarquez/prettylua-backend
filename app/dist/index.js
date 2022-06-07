@@ -6,13 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
+const cors_1 = __importDefault(require("cors"));
 const usuario_1 = __importDefault(require("./routes/usuario"));
 const post_1 = __importDefault(require("./routes/post"));
 const email_1 = __importDefault(require("./routes/email"));
 const mascota_1 = __importDefault(require("./routes/mascota"));
 const rol_1 = __importDefault(require("./routes/rol"));
 const profile_1 = __importDefault(require("./routes/profile"));
-const cors_1 = __importDefault(require("cors"));
+const usuarioSubscripcion_1 = __importDefault(require("./routes/usuarioSubscripcion"));
 const express = require('express');
 const app = express();
 require('dotenv').config();
@@ -34,6 +35,7 @@ app.use('/email', email_1.default);
 app.use('/pet', mascota_1.default);
 app.use('/roles', rol_1.default);
 app.use('/profiles', profile_1.default);
+app.use('/user-subscription', usuarioSubscripcion_1.default);
 mongoose_1.default.default.connect(urlDataBase, (err) => {
     if (err)
         throw err;

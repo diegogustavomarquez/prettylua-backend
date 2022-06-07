@@ -3,13 +3,15 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 
+import cors from 'cors';
+
 import userRoutes from './routes/usuario';
 import postRoutes from './routes/post';
 import emailRoutes from './routes/email';
 import petRoutes from './routes/mascota';
 import rolesRoutes from './routes/rol';
 import profileRoutes from './routes/profile';
-import cors from 'cors';
+import userSubscriptionRoutes from './routes/usuarioSubscripcion';
 
 const express = require('express');
 const app = express();
@@ -41,6 +43,7 @@ app.use('/email', emailRoutes );
 app.use('/pet', petRoutes );
 app.use('/roles', rolesRoutes );
 app.use('/profiles', profileRoutes );
+app.use('/user-subscription', userSubscriptionRoutes );
 
 mongoose.default.connect(urlDataBase, (err) => {
     if (err)
