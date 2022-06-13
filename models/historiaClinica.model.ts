@@ -9,13 +9,14 @@ const historiaClinicaSchema = new Schema({
 });
 
 interface IHistoriaClinica extends Document {
-    numeroHistoriaClinica: number;
-    descripcion: string;
-    comentarios: string;//500
-    tipos: []; //vacuna, antiparasitario, enfermedad/antecente
+    numeroHistoriaClinica: number; // lo agrega el backend
+    petId: string; //es obligatorio
+    tipos: []; //vacuna, antiparasitario, enfermedad, control, estudios medicos, es obligatorio al menos uno
+    descripcion: string; //es obligatorio
+
     archivos: [];
-    fecha: string;//fecha de creacion;
-    petId: string;
+    comentarios: string;//500
+    fecha: string;//fecha de creacion; // lo agrega el backend
 }
 
 //POST 
