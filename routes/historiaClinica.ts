@@ -38,7 +38,7 @@ hcRoutes.post('/add', ( req: Request, res: Response ) => {
 hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
     const hc = req.query.petId;
 
-    HistoriaClinica.find({petId:hc}.sort({fecha: ''}), ( err: any, hcDB: any ) => {
+    HistoriaClinica.find({petId:hc}, ( err: any, hcDB: any ) => {
         const his = {
             _id: hcDB._id,
             codigo   : hcDB.codigo,
