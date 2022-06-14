@@ -14,6 +14,7 @@ const mascota_1 = __importDefault(require("./routes/mascota"));
 const rol_1 = __importDefault(require("./routes/rol"));
 const profile_1 = __importDefault(require("./routes/profile"));
 const usuarioSubscripcion_1 = __importDefault(require("./routes/usuarioSubscripcion"));
+const historiaClinica_1 = __importDefault(require("./routes/historiaClinica"));
 const store_1 = __importDefault(require("./routes/store"));
 const express = require('express');
 const app = express();
@@ -37,7 +38,6 @@ app.use('/pet', mascota_1.default);
 app.use('/roles', rol_1.default);
 app.use('/profiles', profile_1.default);
 app.use('/user-subscription', usuarioSubscripcion_1.default);
-app.use('/store', store_1.default);
 mongoose_1.default.default.connect(urlDataBase, (err) => {
     if (err)
         throw err;
