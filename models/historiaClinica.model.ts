@@ -2,21 +2,39 @@ import { Schema, model, Document } from 'mongoose';
 
 const historiaClinicaSchema = new Schema({
 
-    nombre: {
-        type: String,
-        required: [ true, 'El nombre es necesario' ]
+    codigo: {
+        type: String
+    },
+    petId: {
+        type: String
+    },
+    tipos: [{
+        type: String
+    }],
+    descripcion: {
+        type: String
+    },
+    adjuntos: [{
+        type: String
+    }],
+    comentarios: {
+        type: String
+    },
+    fecha: {
+        type: Date
     }
 });
 
 interface IHistoriaClinica extends Document {
-    numeroHistoriaClinica: number; // lo agrega el backend
+    codigo: string; // lo agrega el backend
     petId: string; //es obligatorio
     tipos: []; //vacuna, antiparasitario, enfermedad, control, estudios medicos, es obligatorio al menos uno
     descripcion: string; //es obligatorio
 
-    archivos: [];
+    adjuntos: [];
     comentarios: string;//500
-    fecha: string;//fecha de creacion; // lo agrega el backend
+    fecha: Date;//fecha de creacion; // lo agrega el backend
+    fechaLong: number;
 }
 
 //POST 
