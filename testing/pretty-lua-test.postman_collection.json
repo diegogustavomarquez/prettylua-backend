@@ -478,6 +478,90 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Add new HC",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ENV}}/clinical/add",
+					"host": [
+						"{{ENV}}"
+					],
+					"path": [
+						"clinical",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete HC by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ENV}}/clinic/delete?id=62a7c959b51180a3755d067a",
+					"host": [
+						"{{ENV}}"
+					],
+					"path": [
+						"clinic",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "62a7c959b51180a3755d067a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHC by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ENV}}/clinic/byId?id=6296b7bf913be20e53d45b5e",
+					"host": [
+						"{{ENV}}"
+					],
+					"path": [
+						"clinic",
+						"byId"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6296b7bf913be20e53d45b5e"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
