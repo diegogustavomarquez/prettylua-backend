@@ -14,6 +14,7 @@ import profileRoutes from './routes/profile';
 import userSubscriptionRoutes from './routes/usuarioSubscripcion';
 import hcRoutes from './routes/historiaClinica';
 import storeRoutes from './routes/store';
+import hcRoutes from './routes/historiaClinica';
 
 const express = require('express');
 const app = express();
@@ -46,6 +47,7 @@ app.use('/pet', petRoutes );
 app.use('/roles', rolesRoutes );
 app.use('/profiles', profileRoutes );
 app.use('/user-subscription', userSubscriptionRoutes );
+app.use('/clinic', hcRoutes );
 app.use('/store', storeRoutes );
 app.use('/clinic', hcRoutes );
 
