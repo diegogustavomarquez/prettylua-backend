@@ -14,7 +14,6 @@ import profileRoutes from './routes/profile';
 import userSubscriptionRoutes from './routes/usuarioSubscripcion';
 import hcRoutes from './routes/historiaClinica';
 import storeRoutes from './routes/store';
-import hcRoutes from './routes/historiaClinica';
 
 const express = require('express');
 const app = express();
