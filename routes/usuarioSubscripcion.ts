@@ -38,7 +38,6 @@ userSubscriptionRoutes.post('', [verificaToken], (req: Request, res: Response) =
 userSubscriptionRoutes.get('/userById', [ verificaToken ], ( req: any, res: Response ) => {
 
     UsuarioSubscripcion.find({userId:req.usuario._id}, ( err: any, userSubscriptionDB: any ) => {
-        console.log("userSubscriptionDB",userSubscriptionDB.userId);
         if ( err ) {
             res.status(500);
             throw err;

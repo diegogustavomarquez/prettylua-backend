@@ -41,9 +41,11 @@ storeRoutes.post('', [verificaToken], (req: Request, res: Response) => {
     });
 });
 
+
 storeRoutes.put('', [verificaToken],  (req: any, res: Response )  => {
 
     const store = {
+        id:                 req.body._id,
         nombre:             req.body.nombre,
         direccion:          req.body.direccion,
         codigoPostal:       req.body.codigoPostal,
@@ -63,32 +65,25 @@ storeRoutes.put('', [verificaToken],  (req: any, res: Response )  => {
         userId :            req.body.userId
     }
 
-    Store.findByIdAndUpdate( req.usuario._id, store, { new: true }, (err, storeDB) => {
+    Store.findByIdAndUpdate( store.id, store, { new: true }, (err, storeDB) => {
 
         if ( !storeDB ) {
             return res.status(404).json({
                 ok: false,
-                mensaje: 'No existe un store con ese ID'
+                mensaje: 'No existe  un store con ese ID'
             });
         }
-
-        if ( err ){
-            res.status(500);
-            throw err;
-        } else {
-            res.json({
-                ok: true,
-                message: "Store Actualizado.",
-                store: storeDB
-            });
-        }
+        res.json({
+            ok: true,
+            data: storeDB,
+            message:"Store actualizada."
+        });
     });
 });
 
 storeRoutes.get('/findById', [ verificaToken ], ( req: any, res: Response ) => {
 
     Store.find({userId:req.usuario._id}, ( err: any, storeDB: any ) => {
-        console.log("userSubscriptionDB",storeDB.userId);
         if ( err ) {
             res.status(500);
             throw err;
@@ -111,23 +106,22 @@ storeRoutes.get('/find', [ verificaToken ], ( req: any, res: Response ) => {
     const nombre = req.query.nombre;
     const localidad = req.query.localidad;
     const codigoPostal = req.query.codigoPostal;
-    const servicio = req.query.servicios;
+    const servicio = req.query.servicio;
 
     var query : any = {};
 
-    if( nombre !== "" ) {
+
+    if(nombre && nombre !== "" ) {
         query["nombre"] =  { $regex: '.*' + nombre + '.*' } ;
     }
-    if( localidad !== "" ) {
+    if(localidad && localidad !== "" ) {
         query["localidad"] =  { $regex: '.*' + localidad + '.*' } ;
     }
-    if( codigoPostal !== "" ) {
+    if(codigoPostal && codigoPostal !== "" ) {
         query["codigoPostal"] = codigoPostal;
     }
-    query["servicio"] = servicio;
-    
+    query["servicios"] = servicio;
     Store.find(query, ( err: any, storeDB: any ) => {
-        console.log("userSubscriptionDB",storeDB.userId);
         if ( err ) {
             res.status(500);
             throw err;
@@ -139,10 +133,11 @@ storeRoutes.get('/find', [ verificaToken ], ( req: any, res: Response ) => {
         }else {
             res.json({
                 ok: true,
-                user: storeDB[0]
+                user: storeDB
             });
         }
     })
 });
+
 
 export default storeRoutes;

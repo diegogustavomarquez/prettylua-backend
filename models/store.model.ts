@@ -74,17 +74,16 @@ interface IStore extends Document {
     provincia: string;
     servicios: [];
     dias: [];
-    esDeCorrido: boolean;
+    esDeCorrido: Boolean;
     horarioDesde: string;
     horarioHasta: string;
     horarioTardeDesde: string;
     horarioTardeHasta: string;
-    es24hs: boolean;
+    es24hs: Boolean;
     descripcion: String;
     promocion: String;
     telefono : number;
     userId : String;
-    //esLocalFisico
 }
 
 export const Store = model<IStore>('Store', storeSchema);
