@@ -34,6 +34,7 @@ interface IHistoriaClinica extends Document {
     adjuntos: [];
     comentarios: string;//500
     fecha: Date;//fecha de creacion; // lo agrega el backend
+    fechaLong: number;
 }
 
 //POST 

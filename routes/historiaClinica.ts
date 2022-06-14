@@ -22,7 +22,7 @@ hcRoutes.post('/add', ( req: Request, res: Response ) => {
     HistoriaClinica.create( hc ).then( hcDB => {
         res.status(201).json({
             ok: true,
-            message: "Usuario creado.",
+            message: "Registro creado.",
             data: hcDB
         });
     }).catch( err => {
@@ -36,8 +36,9 @@ hcRoutes.post('/add', ( req: Request, res: Response ) => {
 * Busca por id
 **/
 hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
-    const hc = req.hc;
-    HistoriaClinica.find({_id:req.hc._id}, ( err: any, hcDB: any ) => {
+    const hc = req.query.petId;
+
+    HistoriaClinica.find({petId:hc}.sort({fecha: ''}), ( err: any, hcDB: any ) => {
         const his = {
             _id: hcDB._id,
             codigo   : hcDB.codigo,
@@ -54,7 +55,7 @@ hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
         } else {
             res.json({
                 ok: true,
-                data: hcDB
+                data: hcDB.reverse()
             });
         }
     })
