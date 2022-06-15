@@ -9,6 +9,9 @@ const petSchema = new Schema({
     breed: {//raza
         type: String
     },
+    code: {
+        type: String
+    },
     kind: {//tipo de animal
         type: String
     },
@@ -41,6 +44,7 @@ const petSchema = new Schema({
 interface IPet extends Document {
     name: string;
     gender : string;
+    code : string;
     breed : string;
     kind : string;
     dateOfBirth: string;

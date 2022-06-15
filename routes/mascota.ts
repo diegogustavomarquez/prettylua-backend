@@ -5,6 +5,7 @@ import { Usuario } from '../models/usuario.model';
 import bcrypt from 'bcrypt';
 import Token from '../classes/token';
 import { verificaToken } from '../middlewares/autenticacion';
+import {v4 as uuidv4} from 'uuid';
 import {
 	ReasonPhrases,
 	StatusCodes,
@@ -21,6 +22,7 @@ petRoutes.post('/createPet', verificaToken,( req: Request, res: Response ) => {
     const pet = {
             id               : req.body._id,
             name              : req.body.name,
+            code              : uuidv4(),
             gender            : req.body.gender,
             kind              : req.body.kind,
             breed             : req.body.breed,
@@ -40,20 +42,11 @@ petRoutes.post('/createPet', verificaToken,( req: Request, res: Response ) => {
                 message: 'No existe un usuario con ese ID'
             });
         }
-        const tokenUser = Token.getJwtToken({
-            _id: userDB._id,
-            nombre   : userDB.nombre,
-            apellido : userDB.apellido,
-            password : userDB.password,
-            email    : userDB.email,
-            telefono : userDB.telefono,
-            //avatar   : userDB.avatar,
-            perfil   : userDB.perfil
-        });
     Pet.create( pet ).then( petDB => {
           const pet = {
             _id               : petDB._id,
             name              : petDB.name,
+            code              : petDB.code,
             gender            : petDB.gender,
             kind              : petDB.kind,
             breed             : petDB.breed,
@@ -67,7 +60,6 @@ petRoutes.post('/createPet', verificaToken,( req: Request, res: Response ) => {
         res.status(201).json({
             ok: true,
             message: "se ha creado la mascota ",
-            token: tokenUser,
             petResult: pet
         });
     }).catch( err => {
@@ -91,6 +83,7 @@ petRoutes.put('/updatePet', verificaToken, (req: any, res: Response ) => {
     const pet = {
             id               : req.body._id,
             name              : req.body.name,
+            code              : req.body.code,
             gender            : req.body.gender,
             kind              : req.body.kind,
             breed             : req.body.breed,
@@ -114,6 +107,7 @@ petRoutes.put('/updatePet', verificaToken, (req: any, res: Response ) => {
         const petResult = {
             _id               : petDB._id,
             name              : petDB.name,
+            code              : petDB.code,
             gender            : petDB.gender,
             kind              : petDB.kind,
             breed             : petDB.breed,
@@ -146,6 +140,7 @@ petRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
         const pet = {
             _id               : petDB._id,
             name              : petDB.name,
+            code              : petDB.code,
             gender            : petDB.gender,
             kind              : petDB.kind,
             breed             : petDB.breed,
@@ -184,6 +179,7 @@ petRoutes.get('/byUserId', [ verificaToken ], ( req: any, res: Response ) => {
         const pet = {
             _id               : petDB._id,
             name              : petDB.name,
+            code              : petDB.code,
             gender            : petDB.gender,
             kind              : petDB.kind,
             breed             : petDB.breed,
