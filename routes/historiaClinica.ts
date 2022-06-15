@@ -38,17 +38,8 @@ hcRoutes.post('/add', ( req: Request, res: Response ) => {
 hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
     const hc = req.query.petId;
 
-    HistoriaClinica.find({petId:hc}, ( err: any, hcDB: any ) => {
-        const his = {
-            _id: hcDB._id,
-            codigo   : hcDB.codigo,
-            petId    : hcDB.petId,
-            tipos    : hcDB.tipos,
-            descripcion : hcDB.descripcion,
-            adjuntos : hcDB.adjuntos,
-            comentarios: hcDB.comentarios,
-            fecha   : hcDB.fecha
-        }
+    HistoriaClinica.find({petId:hc},( err: any, hcDB: any ) => {
+
         if ( err ) {
             res.status(500);
             throw err;
