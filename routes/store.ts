@@ -31,7 +31,7 @@ storeRoutes.post('', [verificaToken], (req: Request, res: Response) => {
         res.status(201).json({
             ok: true,
             message: "Store creado.",
-            userSubscription: storeDB
+            data: storeDB
         });
     }).catch(err => {
         res.status(500).json({
@@ -81,9 +81,28 @@ storeRoutes.put('', [verificaToken],  (req: any, res: Response )  => {
     });
 });
 
+storeRoutes.get('/findByUserId', [ verificaToken ], ( req: any, res: Response ) => {
+    Store.find({userId:req.query.userId}, ( err: any, storeDB: any[]) => {
+        if ( err ) {
+            res.status(500);
+            throw err;
+        } else if(!storeDB || storeDB.length == 0){
+            return res.status(404).json({
+                ok: false,
+                mensaje: 'No existe un store con ese userId'
+            });
+        }else {
+            res.json({
+                ok: true,
+                data: storeDB[0]
+            });
+        }
+    })
+});
+
 storeRoutes.get('/findById', [ verificaToken ], ( req: any, res: Response ) => {
 
-    Store.find({userId:req.usuario._id}, ( err: any, storeDB: any ) => {
+    Store.find({_id:req.query.id}, ( err: any, storeDB: any ) => {
         if ( err ) {
             res.status(500);
             throw err;
@@ -95,7 +114,7 @@ storeRoutes.get('/findById', [ verificaToken ], ( req: any, res: Response ) => {
         }else {
             res.json({
                 ok: true,
-                user: storeDB[0]
+                data: storeDB[0]
             });
         }
     })
@@ -133,7 +152,7 @@ storeRoutes.get('/find', [ verificaToken ], ( req: any, res: Response ) => {
         }else {
             res.json({
                 ok: true,
-                user: storeDB
+                data: storeDB
             });
         }
     })
