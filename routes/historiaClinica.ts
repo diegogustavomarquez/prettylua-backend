@@ -33,9 +33,9 @@ hcRoutes.post('/add', ( req: Request, res: Response ) => {
     });
 });
 /**
-* Busca por id
+* Busca por pet id
 **/
-hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
+hcRoutes.get('/byPetId', [ verificaToken ], ( req: any, res: Response ) => {
     const hc = req.query.petId;
 
     HistoriaClinica.find({petId:hc},( err: any, hcDB: any ) => {
@@ -51,7 +51,25 @@ hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
         }
     })
 });
+/**
+* Busca por id
+**/
+hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
+    const hc = req.query.id;
 
+    HistoriaClinica.find({_id:hc},( err: any, hcDB: any ) => {
+
+        if ( err ) {
+            res.status(500);
+            throw err;
+        } else {
+            res.json({
+                ok: true,
+                data: hcDB.reverse()
+            });
+        }
+    })
+});
 /**
 * Delete byId
 **/
