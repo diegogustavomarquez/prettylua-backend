@@ -55,6 +55,23 @@ const storeSchema = new Schema({
         type: String,
         required: [ true, 'El telefono necesario' ]
     },
+    promocionFoto: {
+        type: String,
+        required: [ true, 'El promocionFoto necesario' ]
+    },
+    instagram: {
+        type: String
+    },
+    facebook: {
+        type: String
+    },
+    twitter: {
+        type: String
+    },
+    email: {
+        type: String,
+        required: [ true, 'El email necesario' ]
+    },
     promocion: {
         type: String,
         required: [ true, 'La promocion  es necesario' ]
@@ -83,6 +100,11 @@ interface IStore extends Document {
     descripcion: String;
     promocion: String;
     telefono : number;
+    promocionFoto: string;
+    instagram: string;
+    facebook: string;
+    twitter: string;
+    email:string;
     userId : String;
 }
 

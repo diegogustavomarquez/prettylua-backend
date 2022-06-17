@@ -24,6 +24,11 @@ storeRoutes.post('', [verificaToken], (req: Request, res: Response) => {
         descripcion:        req.body.descripcion,
         promocion:          req.body.promocion,
         telefono :          req.body.telefono,
+        promocionFoto:      req.body.promocionFoto,
+        instagram:          req.body.instagram,
+        facebook:           req.body.facebook,
+        twitter:            req.body.twitter,
+        email:              req.body.email,
         userId :            req.body.userId
     };
 
@@ -62,6 +67,11 @@ storeRoutes.put('', [verificaToken],  (req: any, res: Response )  => {
         descripcion:        req.body.descripcion,
         promocion:          req.body.promocion,
         telefono :          req.body.telefono,
+        promocionFoto:      req.body.promocionFoto,
+        instagram:          req.body.instagram,
+        facebook:           req.body.facebook,
+        twitter:            req.body.twitter,
+        email:              req.body.email,
         userId :            req.body.userId
     }
 
