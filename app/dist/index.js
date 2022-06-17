@@ -40,7 +40,6 @@ app.use('/profiles', profile_1.default);
 app.use('/user-subscription', usuarioSubscripcion_1.default);
 app.use('/clinic', historiaClinica_1.default);
 app.use('/store', store_1.default);
-app.use('/clinic', historiaClinica_1.default);
 mongoose_1.default.default.connect(urlDataBase, (err) => {
     if (err)
         throw err;

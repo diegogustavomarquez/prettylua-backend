@@ -48,7 +48,6 @@ app.use('/profiles', profileRoutes );
 app.use('/user-subscription', userSubscriptionRoutes );
 app.use('/clinic', hcRoutes );
 app.use('/store', storeRoutes );
-app.use('/clinic', hcRoutes );
 
 mongoose.default.connect(urlDataBase, (err) => {
     if (err)

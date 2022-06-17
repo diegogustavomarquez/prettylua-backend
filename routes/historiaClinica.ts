@@ -57,17 +57,23 @@ hcRoutes.get('/byPetId', [ verificaToken ], ( req: any, res: Response ) => {
 hcRoutes.get('/byId', [ verificaToken ], ( req: any, res: Response ) => {
     const hc = req.query.id;
 
-    HistoriaClinica.find({_id:hc},( err: any, hcDB: any ) => {
-
+    HistoriaClinica.findOne({_id:hc},( err: any, hcDB: any ) => {
         if ( err ) {
             res.status(500);
             throw err;
-        } else {
+        } else if(!hcDB){
+            return res.status(404).json({
+                ok: false,
+                mensaje: 'No existe un store con ese userId'
+            });
+        }else {
             res.json({
                 ok: true,
-                data: hcDB.reverse()
+                data: hcDB
             });
         }
+
+
     })
 });
 /**
