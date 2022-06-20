@@ -30,7 +30,8 @@
     "mongoose": "^6.3.3",
     "nodemailer": "^6.7.5",
     "uniqid": "^5.4.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "web-push": "^3.5.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
