@@ -151,14 +151,10 @@ storeRoutes.get('/find', [ verificaToken ], ( req: any, res: Response ) => {
     }
     query["servicios"] = servicio;
     Store.find(query, ( err: any, storeDB: any ) => {
+        console.log(storeDB);
         if ( err ) {
             res.status(500);
             throw err;
-        } else if(!storeDB || !storeDB[0].userId){
-            return res.status(404).json({
-                ok: false,
-                mensaje: 'No existe un store con esos parametros de busqueda'
-            });
         }else {
             res.json({
                 ok: true,
