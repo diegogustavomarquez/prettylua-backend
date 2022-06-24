@@ -78,9 +78,9 @@ subscriptionRoutes.post('/enviar', [verificaToken], (req: Request, res: Response
                 const payload = {
                     "notification": {
                         "title": "PRETTY LUA",
-                        "body": "Con el codigo VETE2022 obtene un 10% descuento en tu primera consulta",
+                        "body": "Con el CODIGO lua2022 Podrás obtener un 25% de los servicios en tiendas PetShop",
                         "vibrate": [100, 50, 100],
-                        "image": "https://img.freepik.com/vector-gratis/fondo-negro-gato_1324-148.jpg?w=826&t=st=1655594427~exp=1655595027~hmac=de661ab7813605ba1813ddbfdc3009263bd860c7ee0ab2e8117a0d44c7c2d3b9",
+                        "image": "https://i.postimg.cc/VNtnRMk5/promocion.jpg",
                         "actions": [{
                             "action": "explore",
                             "title": "Go to the site"
